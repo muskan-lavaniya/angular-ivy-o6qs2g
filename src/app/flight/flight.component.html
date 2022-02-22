@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="container">
+    <div [formGroup]="flightForm">
+        <div class="row">
+            <div class="col-2">
+              <label>Flight </label>
+              <input formControlName="flight" />
+            </div>
+            <div class="col-2">
+              <label>Date </label>
+              <input formControlName="date" type="date" />
+            </div>
+            <div class="col-2">
+              <label></label>
+              <div>
+                <button class="btn btn-success" (click)="getFlightData()">
+                  Search
+                </button>
+              </div>
+            </div>
+          </div>
+    
+          <div class="row">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th *ngFor="let head of headElements">{{ head }}</th>
+                </tr>
+              </thead>
+              <tbody formArrayName="flightArray">
+                <tr
+                  *ngFor="
+                    let ele of this.flightForm.get('flightArray')['controls'];
+                    let i = index"
+                  [formGroupName]="i">
+                  <td><input formControlName="shipmentNumber" /></td>
+                  <td><input formControlName="origin" /></td>
+                  <td><input formControlName="destination" /></td>
+                  <td><input formControlName="pieces" /></td>
+                  <td><input formControlName="weight" /></td>
+                  <td><input formControlName="remarks" /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </body>
+</html>>
